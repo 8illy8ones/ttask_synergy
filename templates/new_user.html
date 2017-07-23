@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+<div>
+
+{% block content %}
+<br><br><br><br>
+
+        <div class="container">
+  <h2>Add new user</h2>
+  <h2>
+    <a href="users">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="false"></span>
+    </a>
+  </h2>
+
+  <form  action="" method="post" role="form" class="col-xs-3">
+    {{ form.csrf }}
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required="true">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" name="email" required="true">
+      <label for="phone">Phone:</label>
+      <input type="text" class="form-control" id="phone" name="phone">
+      <label for="cell">Cell:</label>
+      <input type="text" class="form-control" id="cell" name="cell">
+      <label for="status">Status:</label>
+      <select class="selectpicker show-menu-arrow" id="status" name="status">
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+ 
+  <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+ 
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Success! </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+ 
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+ 
+</div>
+<br>      
+</div>
+</div>
+
+</div>
+{% endblock %}
+    
